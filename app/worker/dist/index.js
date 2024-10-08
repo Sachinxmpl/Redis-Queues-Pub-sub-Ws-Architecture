@@ -17,6 +17,7 @@ function Handlesubmission(submission) {
         console.log("Procesing the code");
         yield new Promise(resolve => setTimeout(resolve, 1000));
         console.log(`Finished processing the problem for problemid ${problemId}`);
+        client.publish("problemSolved", JSON.stringify({ problemId, code, language }));
     });
 }
 function startserver() {
@@ -31,7 +32,7 @@ function startserver() {
                     yield Handlesubmission(code.element);
                 }
                 catch (e) {
-                    console.log("Error ");
+                    console.log("Error submitting problem  ");
                 }
             }
         }

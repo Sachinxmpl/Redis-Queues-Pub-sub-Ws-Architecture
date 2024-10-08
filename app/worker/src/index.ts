@@ -9,7 +9,7 @@ async function Handlesubmission(submission : string){
 
             await new Promise(resolve => setTimeout(resolve , 1000)) 
             console.log(`Finished processing the problem for problemid ${problemId}`)
-
+            client.publish("problemSolved" , JSON.stringify({problemId , code , language}))
 }
 
 
